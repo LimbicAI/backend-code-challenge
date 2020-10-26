@@ -19,6 +19,14 @@ with the following queries / mutations:
 - [ ] Update this user (consider concurrency issues)
 - [ ] Return user and his posts.
 
+## Stack to use:
+
+- NodeJS
+- Apollo graphql server
+- PostgreSQL (you can use an ORM like Sequelize ORM for if you use plain sql we are open to this approach too)
+- Docker
+- Jest / Mocha-Chai (pick a tool that fits you more)
+
 ## Requirements:
 
 - You should take concurrency issues into consideration, eg multiple concurrent updates;
@@ -38,9 +46,9 @@ with the following queries / mutations:
 
 ## How to submit:
 
-    Fork this repo
-    Issue a Pull Request when you're ready to start. This will count as your starting date.
-    Try to work max 8hours for this test project.
-    Setup your development environment for nodeJS + Apollo graphql + Postgres
-    Implement your solution
-    Commit your changes into the forked repo
+Fork this repo
+Issue a Pull Request when you're ready to start. This will count as your starting date.
+Try to work max 8hours for this test project.
+Setup your development environment for nodeJS + Apollo graphql + Postgres
+Implement your solution
+Commit your changes into the forked repo
