@@ -34,3 +34,13 @@ with the following queries / mutations:
 - Unit and integration tests;
 - API design;
 - Error handling.
+- Dockerize the service.
+
+## How to submit:
+
+    Fork this repo
+    Issue a Pull Request when you're ready to start. This will count as your starting date.
+    Try to work max 8hours for this test project.
+    Setup your development environment for nodeJS + Apollo graphql + Postgres
+    Implement your solution
+    Commit your changes into the forked repo
