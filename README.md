@@ -10,13 +10,14 @@ If you get stuck with the setup, chat us up ASAP, because I wouldn't feel good w
 
 # Goal for you!
 
-You are tasked with writing a piece of software to do Checks and Balances.
-It must comprise an Apollo Graphql Server with the following queries / mutations:
+You are tasked with writing a piece of software to create Users and Posts.
+It must comprise an Node.js Apollo Graphql Server with PostgreSQL as database storage
+with the following queries / mutations:
 
-- [ ] Register a new user to database
-- [ ] Login this user
-- [ ] Update this user (must be protected resource)
-- [ ] Return user (must be protected resource)
+- [ ] Register a new user to database.
+- [ ] Create a new user's post to database.
+- [ ] Update this user (consider concurrency issues)
+- [ ] Return user and his posts.
 
 ## Requirements:
 
@@ -26,7 +27,7 @@ It must comprise an Apollo Graphql Server with the following queries / mutations
 ## General notes:
 
 - You will submit the source code for your solution to us as a compressed file containing all the code and possible documentation. Please make sure to not include unnecessary files such as the Git repository, compiled binaries, etc;
-- Please do not upload your solution to public repositories in GitHub, BitBucket, etc.
+- Please **do not upload** your solution to public repositories in GitHub, BitBucket, etc.
 
 ## Things we're looking for:
 
