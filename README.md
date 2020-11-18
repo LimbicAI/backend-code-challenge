@@ -16,8 +16,8 @@ with the following queries / mutations:
 
 - [ ] Register a new user to database.
 - [ ] Create a new user's post to database.
-- [ ] Update this user (consider concurrency issues)
 - [ ] Return user and his posts.
+- [ ] Add unit tests for the above services.
 
 ## Stack to use:
 
@@ -29,8 +29,7 @@ with the following queries / mutations:
 
 ## Requirements:
 
-- You should take concurrency issues into consideration, eg multiple concurrent updates;
-- It must be production quality according to your understanding of it - tests, README, etc.
+- It must be production quality according to your understanding of it - tests, Docker, README, etc.
 
 ## General notes:
 
@@ -39,10 +38,18 @@ with the following queries / mutations:
 
 ## Things we're looking for:
 
-- Unit and integration tests;
+- Unit tests;
 - API design;
 - Error handling.
 - Dockerize the service.
+
+# Extra bonus! 
+
+The following tasks are not required, but will give you an extra bonus in case you accomplished them
+
+- [ ] Update this user -> You should take concurrency issues into consideration, eg multiple concurrent updates;
+
+- [ ] Add integration tests
 
 ## How to submit:
 
