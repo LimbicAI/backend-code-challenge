@@ -1,61 +1,70 @@
-# backend-code-challenge
+# Back End Code Challenge
 
-My main motiviation with this project is to see what you do with foreign code, but only generally, and in small amount of hours. 
-I think this should be doable, even without any graphql experience before. It might be useful to read through the Apollo Graphql Tutorial first, 
-to give some basic introduction to graphql as a whole.
+In this Back End Coding Challenge Limbic would like to see your skills and coding habits in a production server environment.
 
-I'd like how far you come in 8 hours or so. Really don't spend more time on it, I just want to see how you code, not necessarily how fast!
+Please don't spend more than about 8 hours on this.  We are mostly interested in seeing your coding style and patterns, even if you don't finish everything.
 
-If you get stuck with the setup, chat us up ASAP, because I wouldn't feel good when you'd be spending time on that.
+# The Challenge
 
-# Goal for you!
+You are tasked with writing an API to create Users and Posts. It should be a Node.js server with the following endpoints:
 
-You are tasked with writing a piece of software to create Users and Posts.
-It must comprise an Node.js Apollo Graphql Server with PostgreSQL as database storage
-with the following queries / mutations:
+- Register a new user to database
+- Create a new post for user in database
+- Return user and his posts
 
-- [ ] Register a new user to database.
-- [ ] Create a new user's post to database.
-- [ ] Return user and his posts.
-- [ ] Add unit tests for the above services.
+## Stack Options:
 
-## Stack to use:
+You can pick from 2 different tech stacks, which are of equal interest to us:
 
-- NodeJS
-- Apollo graphql server
-- PostgreSQL (you can use an ORM like Sequelize ORM for if you use plain sql we are open to this approach too)
-- Docker
-- Jest / Mocha-Chai (pick a tool that fits you more)
+### *PostgreSQL*
+
+- TypeScript
+- Node.js
+- Apollo GraphQL
+- PostgreSQL (you may use an ORM like Sequelize if you like)
+- Jest / Mocha-Chai
+
+### *MongoDB*
+
+- TypeScript
+- Node.js
+- Express
+- MongoDB (you may use libs other than the native one if you like)
+- Jest / Mocha-Chai
 
 ## Requirements:
 
-- It must be production quality according to your understanding of it - tests, Docker, README, etc.
-
-## General notes:
-
-- You will submit the source code for your solution to us as a compressed file containing all the code and possible documentation. Please make sure to not include unnecessary files such as the Git repository, compiled binaries, etc;
-- Please **do not upload** your solution to public repositories in GitHub, BitBucket, etc.
+- It should be production quality as you understand it, i.e. tests, Docker, README, documentation, etc.
 
 ## Things we're looking for:
 
-- Unit tests;
-- API design;
-- Error handling.
-- Dockerize the service.
+- TypeScript
+- Project structure
+- Unit tests
+- API design
+- Error handling
+- Dockerize the service
 
-# Extra bonus! 
+## Bonus! 
 
-The following tasks are not required, but will give you an extra bonus in case you accomplished them
+The following tasks are not required, but will give you an extra bonus if you complete them
 
-- [ ] Update this user -> You should take concurrency issues into consideration, eg multiple concurrent updates;
+- Update user, taking into consideration possible concurrency issues
+- Integration tests
 
-- [ ] Add integration tests
+# Submitting:
 
-## How to submit:
+### Option A:
 
-Fork this repo
-Issue a Pull Request when you're ready to start. This will count as your starting date.
-Try to work max 8hours for this test project.
-Setup your development environment for nodeJS + Apollo graphql + Postgres
-Implement your solution
-Commit your changes into the forked repo
+- Fork this repo
+- Issue a Pull Request when you're ready to start. This will count as your starting date
+- Set up your development environment chosen
+- Implement your server
+- Commit changes into the forked repo
+
+### Option B:
+
+- Setup your development environment chosen
+- Implement your server
+- Archive your solution into a zip file
+- Send us the zip file. We should be able to extract the content and run it from there (w/o node_modules)
