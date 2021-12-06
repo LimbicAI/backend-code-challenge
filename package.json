@@ -1,7 +1,7 @@
 {
   "scripts": {
     "dev": "ts-node src/lib/index.ts",
-    "test": "jest"
+    "test": "jest --runInBand"
   },
   "dependencies": {
     "apollo-server": "^3.5.0",
