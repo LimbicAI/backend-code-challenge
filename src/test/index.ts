@@ -19,23 +19,25 @@ beforeEach(async () => {
 test("creates a user", async () => {
   console.log("begin");
   const createUserQuery = gql`
-    mutation CreateUser($handle: String!) {
-      createUser(handle: $handle) {
+    mutation AddUser($handle: String!) {
+      addUser(handle: $handle) {
         id
         handle
       }
     }
   `;
 
-  const server: any = serverFactory();
+  const server = await serverFactory();
 
-  const res = await server.executeOperation({
+  const { data } = await server.executeOperation({
     query: createUserQuery,
     variables: { handle: "user1" },
   });
 
-  expect(res.id).toMatch(UUID_REGEX);
-  expect(res.handle).toBe("user1");
+  expect(data && data.addUser.id).toMatch(UUID_REGEX);
+  expect(data && data.addUser.handle).toBe("user1");
+
+  await server.stop();
 });
 
 afterAll(async () => {
