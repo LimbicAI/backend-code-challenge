@@ -1,4 +1,4 @@
-import { ApolloServer, gql } from "apollo-server";
+import { ApolloError, ApolloServer, gql } from "apollo-server";
 import { Query, Mutation, userResolver, postResolver } from "./resolvers";
 
 // A schema is a collection of type definitions (hence "typeDefs")
@@ -34,6 +34,23 @@ export default async function server() {
   const server = new ApolloServer({
     typeDefs,
     resolvers: { Query, Mutation, User: userResolver, Post: postResolver },
+    formatError: err => {
+      if (
+        process.env.NODE_ENV === "production" &&
+        err.extensions.code === "INTERNAL_SERVER_ERROR"
+      ) {
+        // A internal error, as the user cannot do anything about it, lets log it and
+        // send a generic error to the frontend
+        console.error(err);
+
+        return new ApolloError(
+          "Internal Server Error",
+          "INTERNAL_SERVER_ERROR"
+        );
+      }
+
+      return err;
+    },
   });
 
   const { url } = await server.listen();

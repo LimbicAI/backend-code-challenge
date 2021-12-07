@@ -1,10 +1,12 @@
 {
   "scripts": {
     "dev": "ts-node src/lib/index.ts",
-    "test": "jest --runInBand"
+    "test": "jest --runInBand",
+    "knex": "knex --migrations-directory src/migrations"
   },
   "dependencies": {
     "apollo-server": "^3.5.0",
+    "apollo-server-errors": "^3.3.0",
     "graphql": "^15.7.2",
     "graphql-tag": "^2.12.6",
     "knex": "^0.95.14",

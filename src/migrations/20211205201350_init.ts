@@ -6,7 +6,7 @@ export async function up(knex: Knex) {
       .notNullable()
       .defaultTo(knex.raw("gen_random_uuid()"))
       .primary();
-    t.text("handle").notNullable();
+    t.text("handle").notNullable().unique();
   });
   await knex.schema.createTable("posts", t => {
     t.uuid("id")
@@ -22,6 +22,6 @@ export async function up(knex: Knex) {
   });
 }
 export async function down(knex: Knex) {
-  await knex.schema.dropTableIfExists("users");
   await knex.schema.dropTableIfExists("posts");
+  await knex.schema.dropTableIfExists("users");
 }

@@ -1,5 +1,9 @@
 import knex from "../knex";
+import { HandleAlreadyInUseError, UserNotFoundError } from "./errors";
 import { uuid, Post, PostRow, User, UserRow } from "./types.d";
+
+export const UUID_REGEX =
+  /^[0-9a-fA-F]{8}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{12}$/gi;
 
 interface Query {
   users: () => Promise<User[]>;
@@ -25,14 +29,35 @@ interface Mutation {
 
 export const Mutation: Mutation = {
   addUser: async (_: any, { handle }: { handle: string }) => {
-    const res = await knex("users").insert({ handle }).returning("*");
-    return res[0];
+    try {
+      const res = await knex("users").insert({ handle }).returning("*");
+      return res[0];
+    } catch (err: any) {
+      if (err.constraint === "users_handle_unique") {
+        throw new HandleAlreadyInUseError(
+          `Handle "${handle}" is already is use by another user`
+        );
+      }
+
+      throw err;
+    }
   },
   addPost: async (_, { title, text, author }) => {
-    const [postRow] = await knex("posts")
-      .insert({ title, text, author_id: author })
-      .returning("*");
-    return postRow;
+    if (!UUID_REGEX.test(author)) {
+      throw new Error("Author id must be a UUID");
+    }
+
+    try {
+      const [postRow] = await knex("posts")
+        .insert({ title, text, author_id: author })
+        .returning("*");
+      return postRow;
+    } catch (err: any) {
+      if (err.constraint === "posts_author_id_foreign") {
+        throw new UserNotFoundError("User with id ${author} was not found");
+      }
+      throw err;
+    }
   },
 };
 
