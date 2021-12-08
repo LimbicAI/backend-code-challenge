@@ -1,5 +1,13 @@
 import { Mutation, postResolver, Query, userResolver } from "./resolvers";
 
+/**
+ * Creates a knex db connection mock that has a predetermined result
+ * either succeeding or failing with the passed arguments.
+ *
+ * @param res if not null this will be returned with the query is awaited
+ * @param err if res is null then this error will be thrown when the query is awaited
+ * @returns knex function mock, as a promise that can be awaited
+ */
 function knexMock(res: any, err: any = null): any {
   const knex: any = res ? Promise.resolve(res) : Promise.reject(err);
 
@@ -19,7 +27,7 @@ describe("Query", () => {
         { handle: "1", id: "1" },
         { handle: "2", id: "1" },
       ];
-      const res = await Query.users(null, null, { knex: knexMock(users) });
+      const res = await Query.users({}, {}, { knex: knexMock(users) });
 
       expect(users).toEqual(res);
     });
@@ -29,7 +37,7 @@ describe("Query", () => {
     it("returns to user", async () => {
       const user = { id: "1", handle: "1" };
 
-      const res = await Query.user(null, { id: "1" }, { knex: knexMock(user) });
+      const res = await Query.user({}, { id: "1" }, { knex: knexMock(user) });
 
       expect(res).toEqual(user);
     });
@@ -40,7 +48,7 @@ describe("Query", () => {
       { text: "1", title: "1", author_id: "1" },
       { text: "2", title: "2", author_id: "2" },
     ];
-    const res = await Query.posts(null, null, { knex: knexMock(posts) });
+    const res = await Query.posts({}, {}, { knex: knexMock(posts) });
 
     expect(posts).toEqual(res);
   });
@@ -51,7 +59,7 @@ describe("Mutation", () => {
     it("creates a new user", async () => {
       const userArgs = { handle: "1" };
       const knex = knexMock([{ handle: "1", id: "1" }]);
-      const res = await Mutation.addUser(null, userArgs, { knex });
+      const res = await Mutation.addUser({}, userArgs, { knex });
 
       expect(knex().insert).toHaveBeenCalledWith(userArgs);
       expect(res).toEqual({ handle: "1", id: "1" });
@@ -63,7 +71,7 @@ describe("Mutation", () => {
       err.constraint = "users_handle_unique";
       const knex = knexMock(null, err);
 
-      const resPromise = Mutation.addUser(null, userArgs, { knex });
+      const resPromise = Mutation.addUser({}, userArgs, { knex });
 
       expect(resPromise).rejects.toThrow(
         'Handle "1" is already is use by another user'
@@ -89,7 +97,7 @@ describe("Mutation", () => {
         },
       ]);
 
-      const res = await Mutation.addPost(null, postArgs, { knex });
+      const res = await Mutation.addPost({}, postArgs, { knex });
 
       expect(knex().insert).toHaveBeenCalledWith({
         title: "Title",
@@ -107,7 +115,7 @@ describe("Mutation", () => {
     it("fails when the id is not a uuid", () => {
       const postArgs = { author: "1", title: "Title", text: "Text" };
 
-      const resPromise = Mutation.addPost(null, postArgs, {
+      const resPromise = Mutation.addPost({}, postArgs, {
         knex: null as any,
       });
       expect(resPromise).rejects.toThrow("Author id must be a UUID");
@@ -123,7 +131,7 @@ describe("Mutation", () => {
       err.constraint = "posts_author_id_foreign";
       const knex = knexMock(null, err);
 
-      const resPromise = Mutation.addPost(null, postArgs, { knex });
+      const resPromise = Mutation.addPost({}, postArgs, { knex });
 
       expect(resPromise).rejects.toThrow(
         'User with id "37b24f1d-cec5-4b88-a64e-be362244faf4" was not found'
@@ -134,7 +142,7 @@ describe("Mutation", () => {
 
 describe("UserResolver", () => {
   it("loads the posts for the user", async () => {
-    const parent = { id: "1" };
+    const parent = { id: "1", handle: "1" };
     const knex = knexMock([{ author_id: "1", title: "Title", text: "Text" }]);
     const res = await userResolver.posts(parent, {}, { knex });
 
@@ -144,7 +152,7 @@ describe("UserResolver", () => {
 
 describe("Post", () => {
   it("loads the author for the post", async () => {
-    const parent = { author_id: "1" };
+    const parent = { id: "1", author_id: "1", text: "text", title: "title" };
     const knex = knexMock({ id: "1", handle: "1" });
     const res = await postResolver.author(parent, {}, { knex });
 
@@ -152,6 +160,10 @@ describe("Post", () => {
   });
 });
 
+/**
+ * Test that all resolvers will error when the DB connection
+ * errors
+ */
 describe("Database error", () => {
   test.each([
     { resolver: Query.posts, parent: null, args: {}, name: "Query.posts" },
@@ -196,7 +208,7 @@ describe("Database error", () => {
     const err = new Error("Database error");
     const knex = knexMock(null, err);
 
-    const resPromise = resolver(parent, args as any, { knex });
+    const resPromise = resolver(parent as any, args as any, { knex });
 
     expect(resPromise).rejects.toThrow("Database error");
   });

@@ -1,11 +1,11 @@
-import knex from "../knex";
-
 import { ApolloError, ApolloServer, gql } from "apollo-server";
-import { Query, Mutation, userResolver, postResolver } from "./resolvers";
+import knex from "../knex";
+import { Mutation, postResolver, Query, userResolver } from "./resolvers";
 
-// A schema is a collection of type definitions (hence "typeDefs")
-// that together define the "shape" of queries that are executed against
-// your data.
+/**
+ * Schema for the graphql server, composed of users and posts and the relationship
+ * between the 2. Allows creating users and posts for any user.
+ */
 const typeDefs = gql`
   type User {
     id: ID!
@@ -32,6 +32,11 @@ const typeDefs = gql`
   }
 `;
 
+/**
+ * Creates a new apollo server. To help with testing the server is not listening
+ * to connections yet and `listen` needs to be called on the returned value.
+ * @returns Apollo server
+ */
 export default async function server() {
   const server = new ApolloServer({
     typeDefs,
