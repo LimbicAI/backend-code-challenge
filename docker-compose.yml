@@ -1,0 +1,21 @@
+version: "3.9"  # optional since v1.27.0
+services:
+  web:
+    build: .
+    ports:
+      - "4000:4000"
+    environment:
+      DB_URL: postgresql://limbic:postgres@pg:5432/limbic
+      DELAY_START_MS: "2000"
+      MIGRATE_LATEST: "true"
+    links:
+      - pg
+
+  pg:
+    image: postgres:14
+    ports: 
+      - 5432:5432
+    environment:
+      POSTGRES_USER: limbic
+      POSTGRES_DB: limbic
+      POSTGRES_PASSWORD: postgres
