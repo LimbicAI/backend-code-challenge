@@ -1,7 +1,7 @@
 {
   "preset": "ts-jest",
   "testEnvironment": "node",
-  "testMatch": ["<rootDir>/src/**/*.test.ts"],
+  "testMatch": ["<rootDir>/src/test/**/*.ts"],
   "testPathIgnorePatterns": ["/node_modules/", "<rootDir>/src/test/helpers.ts"],
   "globals": {
     "ts-jest": {
