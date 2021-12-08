@@ -13,7 +13,7 @@ module.exports = {
   },
   development: {
     client: "postgresql",
-    connection: {
+    connection: process.env.DB_URL ?? {
       database: "limbic",
       user: "vasco",
     },
