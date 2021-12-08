@@ -1,6 +1,7 @@
 import gql from "graphql-tag";
 import serverFactory from "../lib/server";
 import { resetDB, UUID_REGEX } from "./helpers";
+import knex from "../knex";
 
 beforeEach(resetDB);
 
@@ -23,6 +24,6 @@ test("creates a user", async () => {
 
   expect(data && data.addUser.id).toMatch(UUID_REGEX);
   expect(data && data.addUser.handle).toBe("user1");
-
-  await server.stop();
 });
+
+afterAll(() => knex.destroy());

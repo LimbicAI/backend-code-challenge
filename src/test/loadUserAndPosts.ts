@@ -2,7 +2,7 @@ import gql from "graphql-tag";
 import knex from "../knex";
 import serverFactory from "../lib/server";
 import { PostRow, UserRow } from "../lib/types";
-import { resetDB, UUID_REGEX } from "./helpers";
+import { resetDB } from "./helpers";
 
 beforeEach(resetDB);
 
@@ -35,12 +35,10 @@ test("load all users and posts", async () => {
 
   const server = await serverFactory();
 
-  const { data, errors } = await server.executeOperation({
+  const { data } = await server.executeOperation({
     query,
     variables: { userId },
   });
-
-  await server.stop();
 
   expect(data).toMatchObject({
     user: {
@@ -53,3 +51,5 @@ test("load all users and posts", async () => {
     },
   });
 });
+
+afterAll(() => knex.destroy());

@@ -33,7 +33,6 @@ test("create a post for an existing user", async () => {
     query: createPostMutation,
     variables: { title: "Title", text: "Text", userId },
   });
-  await server.stop();
 
   expect(data).toMatchObject({
     addPost: {
@@ -47,3 +46,5 @@ test("create a post for an existing user", async () => {
     },
   });
 });
+
+afterAll(() => knex.destroy());
