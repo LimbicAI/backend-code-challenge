@@ -1,3 +1,5 @@
+import knex from "../knex";
+
 import { ApolloError, ApolloServer, gql } from "apollo-server";
 import { Query, Mutation, userResolver, postResolver } from "./resolvers";
 
@@ -51,10 +53,10 @@ export default async function server() {
 
       return err;
     },
+    context: {
+      knex,
+    },
   });
-
-  const { url } = await server.listen();
-  console.log(`🚀  Server ready at ${url}`);
 
   return server;
 }
