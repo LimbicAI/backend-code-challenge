@@ -3,7 +3,7 @@
 module.exports = {
   test: {
     client: "postgresql",
-    connection: {
+    connection: process.env.DB_TEST_URL ?? {
       database: "limbictest",
       user: "vasco",
     },

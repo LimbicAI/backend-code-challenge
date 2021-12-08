@@ -3,7 +3,8 @@
     "dev": "ts-node src/lib/index.ts",
     "integration": "jest --runInBand --config jest.integration.config.json",
     "test": "jest",
-    "knex": "knex --migrations-directory src/migrations"
+    "knex": "knex --migrations-directory src/migrations",
+    "build": "tsc"
   },
   "dependencies": {
     "apollo-server": "^3.5.0",
