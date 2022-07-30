@@ -29,7 +29,7 @@ docker-compose -p backend-code-challenge down
 ### Installation
 
 ```bash
-$ yarn
+$ npm i
 ```
 
 
@@ -49,26 +49,26 @@ $ npm run typeorm:run-migrations
 
 ```bash
 # development
-$ yarn start
+$ npm start
 
 # watch mode
-$ yarn start:dev
+$ npm start:dev
 
 # production mode
-$ yarn run start:prod
+$ npm run start:prod
 ```
 
 ### Test
 
 ```bash
 # unit tests
-$ yarn run test
+$ npm run test
 
 # e2e tests
-$ yarn run test:e2e
+$ npm run test:e2e
 
 # test coverage
-$ yarn run test:cov
+$ npm run test:cov
 ```
 
 

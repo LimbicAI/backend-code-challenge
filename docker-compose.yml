@@ -1,5 +1,27 @@
 version: "3"
 services:
+
+  api:
+    build:
+      dockerfile: Dockerfile
+      context: .
+      # Only will build development stage from our dockerfile
+      target: development
+    volumes:
+      - .:/usr/src/app
+    env_file:
+      - .env
+    environment:
+      - DATABASE_HOST=services-db-x
+    depends_on:
+      - services-db-x
+    # Run a command against the development stage of the image
+    command: npm run start:dev
+    ports:
+      - 3000:3000
+    networks:
+      - services
+
   services-db-x:
     container_name: services-db-x
     image: postgres:13.4-alpine
