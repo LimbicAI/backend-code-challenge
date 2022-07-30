@@ -1,9 +1,10 @@
 import { Field, Int, ObjectType } from "@nestjs/graphql";
-import { BeforeInsert, Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { BeforeInsert, Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import * as bcrypt from "bcryptjs";
 import { Base } from "../../database/entities/base.entity";
 import { classToPlain, Exclude } from "class-transformer";
 import { IsEmail, IsOptional } from "class-validator";
+import { Post } from "../../posts/entities/post.entity";
 
 @ObjectType()
 @Entity({
@@ -12,7 +13,7 @@ import { IsEmail, IsOptional } from "class-validator";
 export class User extends Base {
 
     @PrimaryGeneratedColumn("increment")
-    @Field()
+    @Field(() => Int)
     id: number;
 
     @IsEmail()
@@ -22,9 +23,12 @@ export class User extends Base {
 
     @IsOptional()
     @Column("text")
-    @Field({ nullable: true })
     @Exclude({ toPlainOnly: true })
     password: string;
+
+    @Field(() => [Post])
+    @OneToMany(() => Post, (photo) => photo.user)
+    posts: Post[]
 
     toJSON() {
         return classToPlain(this);

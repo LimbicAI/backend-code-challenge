@@ -6,6 +6,7 @@ import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ormConfig } from './database/config/orm.config';
+import { PostsModule } from './posts/posts.module';
 
 @Module({
   imports: [
@@ -19,6 +20,7 @@ import { ormConfig } from './database/config/orm.config';
     TypeOrmModule.forRoot(ormConfig()),
     UsersModule,
     AuthModule,
+    PostsModule,
   ],
   controllers: [],
   providers: [],

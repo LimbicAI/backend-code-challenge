@@ -36,10 +36,17 @@ $ yarn
 ```
 
 
-### Environment Variable
+### Migration
+
+Use the migration:generate command to let TypeORM generate the migration file.
 
 ```bash
-$ cp .env.example .env
+$ npm run typeorm:generate-migration --name=MigName
+```
+
+To  run migrations
+```
+$ npm run typeorm:run-migrations
 ```
 ### Running the app
 
