@@ -1,70 +1,73 @@
-# Back End Code Challenge
+<p align="center">
+  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo_text.svg" width="320" alt="Nest Logo" /></a>
+</p>
 
-In this Back End Coding Challenge Limbic would like to see your skills and coding habits in a production server environment.
+[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
+[circleci-url]: https://circleci.com/gh/nestjs/nest
 
-Please don't spend more than about 8 hours on this.  We are mostly interested in seeing your coding style and patterns, even if you don't finish everything.
+  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
+    <p align="center">
+<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
+<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
+<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
+<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
+<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
+<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
+<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
+<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
+  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
+    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
+  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
+</p>
+  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
+  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
 
-# The Challenge
+## Description
 
-You are tasked with writing an API to create Users and Posts. It should be a Node.js server with the following endpoints:
+[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
 
-- Register a new user to database
-- Create a new post for user in database
-- Return user and his posts
+## Installation
 
-## Stack Options:
+```bash
+$ npm install
+```
 
-You can pick from 2 different tech stacks, which are of equal interest to us:
+## Running the app
 
-### *PostgreSQL*
+```bash
+# development
+$ npm run start
 
-- TypeScript
-- Node.js
-- Apollo GraphQL
-- PostgreSQL (you may use an ORM like Sequelize if you like)
-- Jest / Mocha-Chai
+# watch mode
+$ npm run start:dev
 
-### *MongoDB*
+# production mode
+$ npm run start:prod
+```
 
-- TypeScript
-- Node.js
-- Express
-- MongoDB (you may use libs other than the native one if you like)
-- Jest / Mocha-Chai
+## Test
 
-## Requirements:
+```bash
+# unit tests
+$ npm run test
 
-- It should be production quality as you understand it, i.e. tests, Docker, README, documentation, etc.
+# e2e tests
+$ npm run test:e2e
 
-## Things we're looking for:
+# test coverage
+$ npm run test:cov
+```
 
-- TypeScript
-- Project structure
-- Unit tests
-- API design
-- Error handling
-- Dockerize the service
+## Support
 
-## Bonus! 
+Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
 
-The following tasks are not required, but will give you an extra bonus if you complete them
+## Stay in touch
 
-- Update user, taking into consideration possible concurrency issues
-- Integration tests
+- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
+- Website - [https://nestjs.com](https://nestjs.com/)
+- Twitter - [@nestframework](https://twitter.com/nestframework)
 
-# Submitting:
+## License
 
-### Option A:
-
-- Fork this repo
-- Issue a Pull Request when you're ready to start. This will count as your starting date
-- Set up your development environment chosen
-- Implement your server
-- Commit changes into the forked repo
-
-### Option B:
-
-- Setup your development environment chosen
-- Implement your server
-- Archive your solution into a zip file
-- Send us the zip file. We should be able to extract the content and run it from there (w/o node_modules)
+Nest is [MIT licensed](LICENSE).
