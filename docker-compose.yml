@@ -1,0 +1,34 @@
+version: "3"
+services:
+  services-db-x:
+    container_name: services-db-x
+    image: postgres:13.4-alpine
+    ports:
+      - "5432:5432"
+    volumes:
+      - services-data-x:/data/pgsql
+    env_file:
+      - docker.env
+    networks:
+      - services
+
+  services-pgadmin-x:
+    links:
+      - services-db-x:services-db-x
+    container_name: services-pgadmin-x
+    image: dpage/pgadmin4
+    ports:
+      - "8080:80"
+    volumes:
+      - services-data-x:/root/.pgadmin
+    env_file:
+      - docker.env
+    networks:
+      - services
+
+networks:
+  services:
+    driver: bridge
+
+volumes:
+  services-data-x:
