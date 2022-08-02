@@ -7,6 +7,7 @@ import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ormConfig } from './database/config/orm.config';
 import { PostsModule } from './posts/posts.module';
+import { join } from 'path';
 
 @Module({
   imports: [
@@ -15,7 +16,8 @@ import { PostsModule } from './posts/posts.module';
     }),
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
-      autoSchemaFile: true
+      autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
+      playground: true
     }),
     TypeOrmModule.forRoot(ormConfig()),
     UsersModule,

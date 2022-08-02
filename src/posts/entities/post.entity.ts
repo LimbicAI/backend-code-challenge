@@ -1,17 +1,17 @@
-import { ObjectType, Field, Int } from '@nestjs/graphql';
+import { ObjectType, Field, Int, ID } from '@nestjs/graphql';
 import { IsString } from 'class-validator';
 import { User } from '../../users/entities/user.entity';
 import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { Base } from '../../database/entities/base.entity';
 
-@ObjectType()
+@ObjectType('Post')
 @Entity({
   name: 'posts'
 })
 export class Post extends Base {
 
   @PrimaryGeneratedColumn("increment")
-  @Field(() => Int)
+  @Field(() => ID)
   id: number;
 
   @IsString()
@@ -19,13 +19,7 @@ export class Post extends Base {
   @Field()
   text: string
 
-  @Field(() => User)
-  @JoinColumn({
-    name: 'userId'
-  })
   @ManyToOne(() => User, (user) => user.posts)
+  @Field(() => User)
   user: User
-
-
-
 }

@@ -1,0 +1,26 @@
+[
+    {
+        "email": "alpha@gmail.com",
+        "password": "test1"
+    },
+    {
+        "email": "beta@gmail.com",
+        "password": "test2"
+    },
+    {
+        "email": "gama@gmail.com",
+        "password": "test3"
+    },
+    {
+        "email": "jhon@gmail.com",
+        "password": "test4"
+    },
+    {
+        "email": "ijaz@gmail.com",
+        "password": "test1w"
+    },
+    {
+        "email": "tester@gmail.com",
+        "password": "test1!@"
+    }
+]

@@ -6,7 +6,6 @@ import { UseGuards } from '@nestjs/common';
 import { GqlAuthGuard } from '../auth/guards/gql-auth.guard';
 import { CurrentUser } from '../auth/current-user.decorator';
 import { User } from '../users/entities/user.entity';
-import { use } from 'passport';
 
 @Resolver(() => Post)
 export class PostsResolver {
@@ -17,7 +16,6 @@ export class PostsResolver {
   createPost(
     @CurrentUser() user: User,
     @Args('createPostInput') createPostInput: CreatePostInput): Promise<Post> {
-    console.log(createPostInput)
     return this.postsService.create(+user.id, createPostInput);
   }
 
