@@ -13,10 +13,10 @@ export class PostsResolver {
 
   @Mutation(() => Post)
   @UseGuards(GqlAuthGuard)
-  createPost(
+  async createPost(
     @CurrentUser() user: User,
     @Args('createPostInput') createPostInput: CreatePostInput): Promise<Post> {
-    return this.postsService.create(+user.id, createPostInput);
+    return await this.postsService.create(+user.id, createPostInput);
   }
 
   @Query(() => [Post], { name: 'posts' })
@@ -25,8 +25,8 @@ export class PostsResolver {
   }
 
   @Query(() => Post, { name: 'post' })
-  findOne(@Args('id', { type: () => Int }) id: number): Promise<Post> {
-    return this.postsService.findOne(id);
+  async findOne(@Args('id', { type: () => Int }) id: number): Promise<Post> {
+    return await this.postsService.findOne(id);
   }
 
 }

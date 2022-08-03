@@ -14,7 +14,7 @@ export class UsersResolver {
     @Query(() => User, { name: 'user', nullable: true })
     @UseGuards(GqlAuthGuard)
     async getUser(@CurrentUser() user: User): Promise<User | any> {
-        return (await this.usersService.getUser(+user.id)).toJSON();
+        return await this.usersService.getUser(+user.id);
     }
 
     @Mutation(() => User)
