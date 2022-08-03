@@ -1,70 +1,76 @@
-# Back End Code Challenge
+## Local Infrastructure
 
-In this Back End Coding Challenge Limbic would like to see your skills and coding habits in a production server environment.
+Use **docker-compose** to run infrastructure locally.
 
-Please don't spend more than about 8 hours on this.  We are mostly interested in seeing your coding style and patterns, even if you don't finish everything.
+Launch the containers in detached mode.
 
-# The Challenge
+```shell
+docker-compose -p="backend-code-challenge" up -d
+```
 
-You are tasked with writing an API to create Users and Posts. It should be a Node.js server with the following endpoints:
+Stop the running containers.
 
-- Register a new user to database
-- Create a new post for user in database
-- Return user and his posts
+```shell
+docker-compose -p backend-code-challenge down
+```
 
-## Stack Options:
+## Containers  
+- Postgres
+  - Server available on `localhost:5432`
+  - Log in with `admin / admin`
+  - Database name is `services`
+- pgAdmin
+  - UI available on http://localhost:8080
+  - Log in with `admin@admin.admin / admin`
+### Description
 
-You can pick from 2 different tech stacks, which are of equal interest to us:
+[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
 
-### *PostgreSQL*
+### Installation
 
-- TypeScript
-- Node.js
-- Apollo GraphQL
-- PostgreSQL (you may use an ORM like Sequelize if you like)
-- Jest / Mocha-Chai
+```bash
+$ npm i
+```
 
-### *MongoDB*
 
-- TypeScript
-- Node.js
-- Express
-- MongoDB (you may use libs other than the native one if you like)
-- Jest / Mocha-Chai
+### Migration
 
-## Requirements:
+Use the migration:generate command to let TypeORM generate the migration file.
 
-- It should be production quality as you understand it, i.e. tests, Docker, README, documentation, etc.
+```bash
+$ npm run typeorm:generate-migration --name=MigName
+```
 
-## Things we're looking for:
+To  run migrations
+```
+$ npm run typeorm:run-migrations
+```
+### Running the app
 
-- TypeScript
-- Project structure
-- Unit tests
-- API design
-- Error handling
-- Dockerize the service
+```bash
+# development
+$ npm start
 
-## Bonus! 
+# watch mode
+$ npm start:dev
 
-The following tasks are not required, but will give you an extra bonus if you complete them
+# production mode
+$ npm run start:prod
+```
 
-- Update user, taking into consideration possible concurrency issues
-- Integration tests
+### Test
 
-# Submitting:
+```bash
+# unit tests
+$ npm run test
 
-### Option A:
+# e2e tests
+$ npm run test:e2e
 
-- Fork this repo
-- Issue a Pull Request when you're ready to start. This will count as your starting date
-- Set up your development environment chosen
-- Implement your server
-- Commit changes into the forked repo
+# test coverage
+$ npm run test:cov
+```
 
-### Option B:
 
-- Setup your development environment chosen
-- Implement your server
-- Archive your solution into a zip file
-- Send us the zip file. We should be able to extract the content and run it from there (w/o node_modules)
+
+
