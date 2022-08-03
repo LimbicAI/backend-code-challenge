@@ -6,21 +6,20 @@ import { UsersService } from './users.service';
 describe('UsersResolver', () => {
   let resolver: UsersResolver;
 
-
-  let userInput = {
+  const userInput = {
     email: 'test@test.com',
-    password: 'password'
-  }
+    password: 'password',
+  };
 
-  let user = {
+  const user = {
     id: 1,
-    email: userInput.email
-  }
+    email: userInput.email,
+  };
 
-  let mockUserService = {
+  const mockUserService = {
     getUser: jest.fn(),
-    createUser: jest.fn()
-  }
+    createUser: jest.fn(),
+  };
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
@@ -28,8 +27,8 @@ describe('UsersResolver', () => {
         UsersResolver,
         {
           provide: UsersService,
-          useValue: mockUserService
-        }
+          useValue: mockUserService,
+        },
       ],
     }).compile();
 
@@ -49,11 +48,10 @@ describe('UsersResolver', () => {
   });
 
   it('getUser', async () => {
-    mockUserService.getUser.mockReturnValue(user)
+    mockUserService.getUser.mockReturnValue(user);
 
     const res = await resolver.getUser(user as User);
     expect(res).toMatchObject(user);
     expect(mockUserService.getUser).toHaveBeenCalledWith(user.id);
-
   });
 });

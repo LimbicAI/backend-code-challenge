@@ -9,13 +9,14 @@ import { User } from '../users/entities/user.entity';
 
 @Resolver(() => Post)
 export class PostsResolver {
-  constructor(private readonly postsService: PostsService) { }
+  constructor(private readonly postsService: PostsService) {}
 
   @Mutation(() => Post)
   @UseGuards(GqlAuthGuard)
   async createPost(
     @CurrentUser() user: User,
-    @Args('createPostInput') createPostInput: CreatePostInput): Promise<Post> {
+    @Args('createPostInput') createPostInput: CreatePostInput,
+  ): Promise<Post> {
     return await this.postsService.create(+user.id, createPostInput);
   }
 
@@ -28,5 +29,4 @@ export class PostsResolver {
   async findOne(@Args('id', { type: () => Int }) id: number): Promise<Post> {
     return await this.postsService.findOne(id);
   }
-
 }

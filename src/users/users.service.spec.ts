@@ -6,29 +6,29 @@ import { UsersService } from './users.service';
 describe('UsersService', () => {
   let service: UsersService;
 
-  let userInput = {
+  const userInput = {
     email: 'test@test.com',
-    password: 'password'
-  }
+    password: 'password',
+  };
 
-  let user = {
+  const user = {
     id: 1,
-    email: userInput.email
-  }
+    email: userInput.email,
+  };
 
-  let mockUserRespsitory = {
+  const mockUserRespsitory = {
     create: jest.fn(),
     save: jest.fn(),
     findOne: jest.fn(),
-  }
+  };
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       providers: [
         UsersService,
         {
           provide: getRepositoryToken(User),
-          useValue: mockUserRespsitory
-        }
+          useValue: mockUserRespsitory,
+        },
       ],
     }).compile();
 
@@ -46,28 +46,26 @@ describe('UsersService', () => {
     const res = await service.createUser(userInput);
     expect(res).toMatchObject(user);
     expect(mockUserRespsitory.create).toHaveBeenCalledWith(userInput);
-    expect(mockUserRespsitory.save).toHaveBeenCalledWith(userInput)
-
-  })
+    expect(mockUserRespsitory.save).toHaveBeenCalledWith(userInput);
+  });
 
   it('getUser', async () => {
     mockUserRespsitory.findOne.mockReturnValue(user);
 
-    const res = await service.getUser(user.id)
+    const res = await service.getUser(user.id);
     expect(res).toMatchObject(user);
     expect(mockUserRespsitory.findOne).toHaveBeenCalledWith({
-      where: { id: user.id }
-    })
-
-  })
+      where: { id: user.id },
+    });
+  });
 
   it('getUserByEmail', async () => {
     mockUserRespsitory.findOne.mockReturnValue(user);
 
-    const res = await service.getUserByEmail(user.email)
+    const res = await service.getUserByEmail(user.email);
     expect(res).toMatchObject(user);
     expect(mockUserRespsitory.findOne).toHaveBeenCalledWith({
-      where: { email: user.email }
-    })
-  })
+      where: { email: user.email },
+    });
+  });
 });

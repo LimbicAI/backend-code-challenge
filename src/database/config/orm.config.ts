@@ -21,11 +21,10 @@ export function ormConfig(): any {
     synchronize: false,
     logging: false,
     entities: [User, Post],
-    migrations: ["dist/migrations/*{.ts,.js}"],
-    migrationsTableName: "migrations_typeorm",
-    migrationsRun: true
+    migrations: ['dist/migrations/*{.ts,.js}'],
+    migrationsTableName: 'migrations_typeorm',
+    migrationsRun: true,
   };
 }
 
 export default new DataSource(ormConfig());
-

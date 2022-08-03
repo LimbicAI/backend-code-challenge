@@ -5,37 +5,37 @@ import { PostsService } from './posts.service';
 
 describe('PostsResolver', () => {
   let resolver: PostsResolver;
-  let mockPosts = [
+  const mockPosts = [
     {
       id: 1,
-      text: "ut aspernatur corporis harum nihil quis provident sequi\\nmollitia nobis aliquid molestiae\\nperspiciatis et ea nemo ab reprehenderit accusantium quas\\nvoluptate dolores velit et doloremque molestiae",
+      text: 'ut aspernatur corporis harum nihil quis provident sequi\\nmollitia nobis aliquid molestiae\\nperspiciatis et ea nemo ab reprehenderit accusantium quas\\nvoluptate dolores velit et doloremque molestiae',
       user: {
         id: 1,
-        email: 'test@test.com'
-      }
+        email: 'test@test.com',
+      },
     },
     {
       id: 2,
-      text: "ut aspernatur corporis harum nihil quis provident sequi\\nmollitia nobis aliquid molestiae\\nperspiciatis et ea nemo ab reprehenderit accusantium quas\\nvoluptate dolores velit et doloremque molestiae",
+      text: 'ut aspernatur corporis harum nihil quis provident sequi\\nmollitia nobis aliquid molestiae\\nperspiciatis et ea nemo ab reprehenderit accusantium quas\\nvoluptate dolores velit et doloremque molestiae',
       user: {
         id: 1,
-        email: 'test@test.com'
-      }
+        email: 'test@test.com',
+      },
     },
     {
       id: 3,
-      text: "ut aspernatur corporis harum nihil quis provident sequi\\nmollitia nobis aliquid molestiae\\nperspiciatis et ea nemo ab reprehenderit accusantium quas\\nvoluptate dolores velit et doloremque molestiae",
+      text: 'ut aspernatur corporis harum nihil quis provident sequi\\nmollitia nobis aliquid molestiae\\nperspiciatis et ea nemo ab reprehenderit accusantium quas\\nvoluptate dolores velit et doloremque molestiae',
       user: {
         id: 1,
-        email: 'test@test.com'
-      }
-    }
-  ]
-  let mockPostService = {
+        email: 'test@test.com',
+      },
+    },
+  ];
+  const mockPostService = {
     create: jest.fn(),
     findAll: jest.fn(),
-    findOne: jest.fn()
-  }
+    findOne: jest.fn(),
+  };
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
@@ -43,8 +43,8 @@ describe('PostsResolver', () => {
         PostsResolver,
         {
           provide: PostsService,
-          useValue: mockPostService
-        }
+          useValue: mockPostService,
+        },
       ],
     }).compile();
 
@@ -71,12 +71,11 @@ describe('PostsResolver', () => {
     const res = await resolver.findAll();
     expect(res).toMatchObject(mockPosts);
     expect(mockPostService.findAll).toHaveBeenCalled();
-
   });
 
   it('findOne', async () => {
     const post = mockPosts[0];
-    mockPostService.findOne.mockReturnValue(post)
+    mockPostService.findOne.mockReturnValue(post);
 
     const res = await resolver.findOne(post.id);
     expect(res).toMatchObject(post);

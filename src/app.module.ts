@@ -17,7 +17,7 @@ import { join } from 'path';
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
       autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
-      playground: true
+      playground: true,
     }),
     TypeOrmModule.forRoot(ormConfig()),
     UsersModule,
@@ -27,4 +27,4 @@ import { join } from 'path';
   controllers: [],
   providers: [],
 })
-export class AppModule { }
+export class AppModule {}
