@@ -13,10 +13,10 @@ export class UsersService {
 
     public async createUser(createUserData: CreateUserInput): Promise<User> {
         try {
-            const user: User = new User({
+            const user: User = this.userRepository.create({
                 ...createUserData
             })
-            return await user.save()
+            return await this.userRepository.save(user)
         } catch (error) {
             if (error.code === '23505') {
                 throw new ConflictException('Email already exists');

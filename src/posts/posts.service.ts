@@ -11,8 +11,8 @@ export class PostsService {
     private readonly postRepository: Repository<Post>
   ) { }
   async create(userId: number, createPostInput: CreatePostInput): Promise<Post> {
-    const post = new Post({ user: { id: userId }, ...createPostInput });
-    return await post.save()
+    const post = this.postRepository.create({ user: { id: userId }, ...createPostInput });
+    return await this.postRepository.save(post)
   }
 
   async findAll(): Promise<Post[]> {
