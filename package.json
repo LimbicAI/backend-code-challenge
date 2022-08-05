@@ -1,0 +1,20 @@
+{
+  "name": "backend-code-challenge",
+  "version": "1.0.0",
+  "description": "In this Back End Coding Challenge Limbic would like to see your skills and coding habits in a production server environment.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Olufemiobafunmiso/backend-code-challenge.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Olufemiobafunmiso/backend-code-challenge/issues"
+  },
+  "homepage": "https://github.com/Olufemiobafunmiso/backend-code-challenge#readme"
+}
