@@ -1,0 +1,23 @@
+#Ignore the logs directory
+logs/
+
+
+#Ignoring git and cache folders
+.gitignore
+.cache
+
+#Ignoring all the markdown and class files
+*.md
+
+# redis  cache 
+cache/
+
+# mongo 
+data/
+
+.env
+docker-compose.yml
+Dockerfile
+src/**/*.spec.ts
+src/**/*.test.ts
+

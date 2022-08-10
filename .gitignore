@@ -102,3 +102,12 @@ dist
 
 # TernJS port file
 .tern-port
+
+# tsc output 
+build/
+
+# redis docker cache 
+cache/
+
+# redis docker mongo 
+data/
