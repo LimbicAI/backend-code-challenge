@@ -1,5 +1,6 @@
 import express from "express";
 import { Request, Response, NextFunction } from "express";
+import * as fs from "fs";
 const app = express();
 import helmet from "helmet";
 import bodyParser from "body-parser";
@@ -8,12 +9,19 @@ import * as dotenv from "dotenv";
 import PostRoute from "./Routes/PostRoute";
 import UserRoute from "./Routes/UserRoute";
 import morgan from "morgan";
+import path from "path";
 
 dotenv.config();
 
 app.use(helmet());
 app.use(bodyParser.json());
-app.use(morgan<Request, Response>("dev"));
+
+//Logger
+const accessLogStream = fs.createWriteStream(
+  path.join(__dirname, "requests.log"),
+  { flags: "a" }
+);
+app.use(morgan("combined", { stream: accessLogStream }));
 
 const dbConnectionString: string = process.env.DB_CONNECTION ?? "";
 const server_port = process.env.SERVER_PORT ?? "";
