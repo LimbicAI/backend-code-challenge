@@ -1,0 +1,29 @@
+{
+  "name": "limbic_backend_challenge",
+  "version": "1.0.0",
+  "description": "Tugume Vicent's submission for the limbic backend challenge",
+  "main": "build/app.js",
+  "scripts": {
+    "start": "nodemon  build/app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Vicent Tugume",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/cors": "^2.8.12",
+    "@types/express": "^4.17.13",
+    "@types/morgan": "^1.9.3",
+    "@types/node": "^18.7.1",
+    "nodemon": "^2.0.19",
+    "typescript": "^4.7.4"
+  },
+  "dependencies": {
+    "body-parser": "^1.20.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "helmet": "^5.1.1",
+    "mongoose": "^6.5.2",
+    "morgan": "^1.10.0"
+  }
+}

@@ -1,70 +1,26 @@
-# Back End Code Challenge
+# Limbic Backend Challenge
 
-In this Back End Coding Challenge Limbic would like to see your skills and coding habits in a production server environment.
+My submission for the Limbic Backend Challenge
 
-Please don't spend more than about 8 hours on this.  We are mostly interested in seeing your coding style and patterns, even if you don't finish everything.
+## Script:
 
-# The Challenge
+- npm install
+- tsc
+- npm start
 
-You are tasked with writing an API to create Users and Posts. It should be a Node.js server with the following endpoints:
+## Mongodb
 
-- Register a new user to database
-- Create a new post for user in database
-- Return user and his posts
+- Select which MongoDB instance you'd like to use eg Atlas or Local and provide the connection string in the .env file.
 
-## Stack Options:
 
-You can pick from 2 different tech stacks, which are of equal interest to us:
+## Endpoints:
 
-### *PostgreSQL*
+### User:
 
-- TypeScript
-- Node.js
-- Apollo GraphQL
-- PostgreSQL (you may use an ORM like Sequelize if you like)
-- Jest / Mocha-Chai
+-[POST] create user : localhost:3000/user/ ---- Request body should contain these keys {username,firstname,surname}
+-[GET] get user : localhost:3000/user/userName ---- Request parameter should be username
 
-### *MongoDB*
+### Posts:
 
-- TypeScript
-- Node.js
-- Express
-- MongoDB (you may use libs other than the native one if you like)
-- Jest / Mocha-Chai
-
-## Requirements:
-
-- It should be production quality as you understand it, i.e. tests, Docker, README, documentation, etc.
-
-## Things we're looking for:
-
-- TypeScript
-- Project structure
-- Unit tests
-- API design
-- Error handling
-- Dockerize the service
-
-## Bonus! 
-
-The following tasks are not required, but will give you an extra bonus if you complete them
-
-- Update user, taking into consideration possible concurrency issues
-- Integration tests
-
-# Submitting:
-
-### Option A:
-
-- Fork this repo
-- Issue a Pull Request when you're ready to start. This will count as your starting date
-- Set up your development environment chosen
-- Implement your server
-- Commit changes into the forked repo
-
-### Option B:
-
-- Setup your development environment chosen
-- Implement your server
-- Archive your solution into a zip file
-- Send us the zip file. We should be able to extract the content and run it from there (w/o node_modules)
+-[POST] create post for a specific user: localhost:3000/post ---- Request body should contain these keys {title,description,username}
+-[GET] get all posts by a specific user : localhost:3000/post/userName ---Request parameter should be username
